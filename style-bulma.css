@@ -1,0 +1,27 @@
+html, body {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center.column {
+  flex-direction: column;
+}
+
+.my-min {
+  min-width: 280px;
+}
+
+.item-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

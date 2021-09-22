@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>To-do list  | Francisko</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="style-bulma.css">
+  </head>
+  <body>
+<div class="wrapper has-background-dark">
+  
+      <section class="section has-text-centered has-background-dark">
+        <h1 class="title is-1 has-text-warning">To-do List</h1>
+      </section>
+  
+      <section class="section has-background-dark">
+        <div class="container center column">
+          <form class="my-min" id="search-todo">
+            <label for="busca">
+              <input autocomplete="off" class="input is-warning mb-5" type="text" id="busca" name="busca" placeholder="Buscar to-do">
+            </label>
+          </form>
+          <ul class="my-min" id="todo-list">
+            <li class="notification mb-1 p-3 is-warning"><div class="item-text">
+              <div>Assistir Breaking Bad</div> <div>
+                <button class="delete is-warning"></button>
+              </div>
+            </div></li>
+          <ul class="my-min">
+            <li class="notification mb-1 p-3 is-warning"><div class="item-text">
+              <div>Planejar aulas</div> <div>
+                <button class="delete is-warning"></button>
+              </div>
+            </div></li>
+          <ul class="my-min">
+            <li class="notification mb-1 p-3 is-warning"><div class="item-text">
+              <div>Fazer exercícios físicos</div> <div>
+                <button class="delete is-warning"></button>
+              </div>
+            </div></li>
+          </ul>
+        </div>
+      </section>
+  
+      <section class="section has-background-dark">
+        <div class="container">
+          <form class="center" id="add-todo-form">
+            <label for="add-todo">
+              <h2 class="has-text-warning">Adicionar to-do</h2>
+              <input class="input is-warning" type="text" name="add-todo" id="addTodo">
+            </label>
+          </form>
+        </div>
+      </section>
+</div>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="./app-bulma.js"></script>
+  </body>
+</html>
+

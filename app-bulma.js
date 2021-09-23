@@ -1,46 +1,51 @@
-const searchTodoItemForm = document.querySelector('#search-todo')
-const todoList = document.querySelector('#todo-list')
-const addTodoForm = document.querySelector('#add-todo-form')
-const test = Array.from(document.querySelectorAll('li'))
+const formAddTodo = document.querySelector('#form-add-todo')
+const formSearch = document.querySelector('.form-search')
+const todosContainer = document.querySelector('#todos-container')
 
-const createTodoHTML = message => `
-<li class="notification mb-1 p-3 is-warning">
-  <div class="item-text">
-    <div>${message}</div>
-    <div>
-      <button class="delete is-warning"></button>
-    </div>
-  </div>
-</li>
+
+const createTodoHTML = content => `
+  <li class="message has-background-warning has-text-dark my-1 p-3 is-flex is-justify-content-space-between is-align-items-center">
+    <span>${content}</span><i class="fas fa-trash-alt is-clickable"></i>
+  </li>
 `
 
-addTodoForm.addEventListener('submit', event => {
-  event.preventDefault()
-  
-  const newTodoString = event.target.addTodo.value
-  const newTodo = createTodoHTML(newTodoString)
-  newTodo.trim()
 
-  if (newTodo) {
-    todoList.innerHTML += newTodo
+formAddTodo.addEventListener('submit', event => {
+  event.preventDefault()
+
+  const inputValue = event.target.add.value.trim()
+
+  if (inputValue.length) {
+    todosContainer.innerHTML += createTodoHTML(inputValue)
   }
 
   event.target.reset()
 })
 
-todoList.addEventListener('click', event => {
-  const clickedElementClass = event.target.classList[0]
+todosContainer.addEventListener('click', event => {
+  const clickedElement = event.target
+  const isClickedElementDeleteButton = Array.from(event.target.classList)
+  .includes('fa-trash-alt')
 
-  if (clickedElementClass === 'delete') {
-    event.target.parentElement.parentElement.parentElement.remove()
+  if (isClickedElementDeleteButton) {
+    clickedElement.parentElement.remove()
   }
 })
 
-searchTodoItemForm.addEventListener('keyup', event => {
-  const todoItems = Array.from(document.querySelectorAll('li'))
-  const inputValue = event.target.value
+formSearch.addEventListener('submit', event => {
+  event.preventDefault()
+  event.target.reset()
+})
 
-  if (todoItems.some(item => item.textContent.includes(inputValue))) {
-    console.log(item);
-  }
+formSearch.search.addEventListener('input', event => {
+  const inputValue = event.target.value
+  const lis = Array.from(todosContainer.children)
+
+  lis.forEach(li => {
+    if (!li.querySelector('span').textContent.includes(inputValue)) {
+      li.setAttribute('class', 'is-hidden')
+      return
+    }
+    li.setAttribute('class', 'message has-background-warning has-text-dark my-1 p-3 is-flex is-justify-content-space-between is-align-content-center')
+  })
 })

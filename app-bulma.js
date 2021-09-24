@@ -1,5 +1,6 @@
 const formAddTodo = document.querySelector('#form-add-todo')
 const todosContainer = document.querySelector('#todos-container')
+const formSearchTodo = document.querySelector('.form-search input')
 
 formAddTodo.addEventListener('submit', event => {
   event.preventDefault()
@@ -18,4 +19,21 @@ todosContainer.addEventListener('click', event => {
   if (Array.from(clickedElement.classList).includes('fa-trash-alt')) {
     clickedElement.parentElement.remove()
   }
+})
+
+formSearchTodo.addEventListener('input', event => {
+  const inputValue = event.target.value.trim().toLowerCase()
+
+  Array.from(todosContainer.children)
+    .filter(todo => !todo.textContent.toLowerCase().includes(inputValue))
+    .forEach(todo => {
+      todo.classList.add('is-hidden')
+    })
+
+  Array.from(todosContainer.children)
+    .filter(todo => todo.textContent.toLowerCase().includes(inputValue))
+    .forEach(todo => {
+      todo.classList.remove('is-hidden')
+    })
+
 })

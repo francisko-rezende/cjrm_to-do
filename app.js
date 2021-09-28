@@ -1,54 +1,63 @@
+const formAddTodo = document.querySelector('#form-add-todo')
+const todosContainer = document.querySelector('#todos-container')
+const formSearchTodo = document.querySelector('.form-search input')
 
-const formAddTodo = document.querySelector('.form-add-todo')
-const todosContainer = document.querySelector('.todos-container')
-const formSearchTodo = document.querySelector('.form-search')
-
-const generateTodo = message => `
-<li class="list-group-item d-flex justify-content-between align-items-center">
-  <span>${message}</span>
-  <i class="far fa-trash-alt delete"></i>
+const generateTodoHTML = todoContent => `
+<li data-todo-content="${todoContent}" class="message has-background-warning has-text-dark my-1 p-3 is-flex is-justify-content-space-between is-align-items-center">
+  <span>${todoContent}</span><i class="fas fa-trash-alt is-clickable delete-item" data-todo-content="${todoContent}"></i>
 </li>
 `
 
-formAddTodo.addEventListener('submit', event => {
+const handleAddTodo = event => {
   event.preventDefault()
-
   const inputValue = event.target.add.value.trim()
-  if (inputValue.length) {
-    todosContainer.innerHTML += generateTodo(event.target.add.value)
-
-    event.target.reset()
-  }
-})
-
-formSearchTodo.addEventListener('submit', event => {
-  event.preventDefault()
-})
-
-formSearchTodo.search.addEventListener('input', event => {
-  const lis = Array.from(todosContainer.children)
-  const inputValue = event.target.value
-  const hideLi = li => {
-    li.setAttribute('class', 'd-none')
-  }
-  const resetLiClasses = li => {
-    li.setAttribute('class', 'list-group-item d-flex justify-content-between align-items-center')
-  }
+  const isThereAnInput = inputValue.length
   
-  lis.forEach(li => {
+  if (isThereAnInput) {
+    todosContainer.innerHTML += generateTodoHTML(inputValue)
+  }
+  event.target.reset()
+}
 
-    const isTodoPresent = li.querySelector('span').textContent.includes(inputValue)
-    
-    !isTodoPresent ? hideLi(li) : resetLiClasses(li)
-  
-  })
-})
+const removeLi = element => {
+  document
+  .querySelector(`[data-todo-content="${element.dataset.todoContent}"]`)
+  .remove()
+}
 
-todosContainer.addEventListener('click', event => {
+const handleTodoDeletion = event => {
   const clickedElement = event.target
-  const isClickedElementTrashIcon = Array.from(clickedElement.classList).includes('delete')
-
+  const isClickedElementTrashIcon = Array.from(clickedElement.classList)
+    .includes('delete-item')
+  
   if (isClickedElementTrashIcon) {
-    clickedElement.parentElement.remove()
+    removeLi(clickedElement)
   }
-})
+}
+
+const hideMismatchingTodos =  (array, todoContent) => {
+  array
+  .filter(todo => !todo.textContent.toLowerCase().includes(todoContent))
+  .forEach(todo => {
+    todo.classList.add('is-hidden')
+  })
+}
+const showMatchingTodos = (array, todoContent) => {
+  array
+  .filter(todo => todo.textContent.toLowerCase().includes(todoContent))
+  .forEach(todo => {
+    todo.classList.remove('is-hidden')
+  })
+}
+
+const handleTodoSearches = event => {
+  const inputValue = event.target.value.trim().toLowerCase()
+  const todosArray = Array.from(todosContainer.children)
+
+  hideMismatchingTodos(todosArray, inputValue)
+  showMatchingTodos(todosArray, inputValue)
+}
+
+formAddTodo.addEventListener('submit', handleAddTodo)
+todosContainer.addEventListener('click', handleTodoDeletion)
+formSearchTodo.addEventListener('input', handleTodoSearches)

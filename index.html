@@ -1,45 +1,57 @@
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <link rel="stylesheet" href="./style.css">
-  <title>To-do List | CJRM</title>
-</head>
-<body class="bg-dark">
-  <div class="container">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>To-do list | Francisko</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/35bbfde524.js" crossorigin="anonymous"></script>
+  </head>
+  <body class="has-background-dark">
+      <header class="has-text-centered has-text-warning section max-width-370">
+        <h1 class="mb-4 is-size-1">To-do List</h1>
+        <form class="form-search">
+          <input
+            class="input is-warning"
+            type="text"
+            name="search"
+            placeholder="Buscar to-do"
+            autocomplete="off"
+          />
+        </form>
+      </header>
 
-    <header class="text-center text-light my-4">
-      <h1 class="mb-4">To-do List</h1>
-      <form class="form-search">
-        <input class="form-control m-auto" type="text" name="search" placeholder="Buscar to-do" />
-      </form>
-    </header>
+      <ul class="section max-width-370" id="todos-container">
+        <!-- <li class="message has-background-warning has-text-dark my-1 p-3 is-flex is-justify-content-space-between is-align-items-center">
+          <span>Assistir Breaking bad</span><i class="fas fa-trash-alt is-clickable delete-item" ></i>
+        </li>
+        <li class="message has-background-warning has-text-dark my-1 p-3 is-flex is-justify-content-space-between is-align-items-center">
+          <span>Planejar aulas</span><i class="fas fa-trash-alt is-clickable delete-item"></i>
+        </li>
+        <li class="message has-background-warning has-text-dark my-1 p-3 is-flex is-justify-content-space-between is-align-items-center">
+          <span>Fazer exercícios físicos</span><i class="fas fa-trash-alt is-clickable delete-item"></i>
+        </li> -->
+      </ul>
 
-    <ul class="todos-container list-group mx-auto text-light">
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <span>Assistir Breaking Bad</span>
-        <i class="far fa-trash-alt delete"></i>
-      </li>
-
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <span>Planejar aulas</span>
-        <i class="far fa-trash-alt delete"></i>
-      </li>
-
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <span>Fazer exercícios físicos</span>
-        <i class="far fa-trash-alt delete"></i>
-      </li>
-    </ul>
-
-    <form class="form-add-todo text-center my-4">
-      <label class="text-light">Adicionar to-do</label>
-      <input class="form-control m-auto" type="text" name="add" autofocus />
-    </form>
-  </div>
-
-  <script src="./app.js"></script>
-</body>
+      <div class="section has-text-centered max-width-370">
+        <form id='form-add-todo'>
+          <label class="label has-text-warning" for="add">
+            Adicionar to-do
+          </label>
+          <input
+            class="input is-warning"
+            type="text"
+            name="add"
+            id="add"
+            autocomplete="off"
+            autofocus
+          />
+        </form>
+      </div>
+    <script src="./app.js"></script>
+  </body>
 </html>

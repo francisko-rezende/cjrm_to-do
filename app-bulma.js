@@ -19,19 +19,21 @@ const handleAddTodo = event => {
   event.target.reset()
 }
 
-const removeLi = element => {document
+const removeLi = element => {
+  document
   .querySelector(`[data-todo-content="${element.dataset.todoContent}"]`)
-  .remove()}
+  .remove()
+}
 
 const handleTodoDeletion = event => {
   const clickedElement = event.target
   const isClickedElementTrashIcon = Array.from(clickedElement.classList)
-  .includes('delete-item')
+    .includes('delete-item')
   
   if (isClickedElementTrashIcon) {
     removeLi(clickedElement)
   }
-  }
+}
 
 const hideMismatchingTodos =  (array, todoContent) => {
   array

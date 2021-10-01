@@ -20,9 +20,9 @@ const handleAddTodo = event => {
   event.target.reset()
 }
 
-const removeLi = element => {
+const removeLi = clickedElement => {
   document
-  .querySelector(`[data-todo-content="${element.dataset.todoContent}"]`)
+  .querySelector(`[data-todo-content="${clickedElement.dataset.todoContent}"]`)
   .remove()
 }
 

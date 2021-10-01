@@ -36,27 +36,22 @@ const handleTodoDeletion = event => {
   }
 }
 
-const hideMismatchingTodos =  (array, todoContent) => {
-  array
-  .filter(todo => !todo.textContent.toLowerCase().includes(todoContent))
-  .forEach(todo => {
-    todo.classList.add('is-hidden')
-  })
-}
-const showMatchingTodos = (array, todoContent) => {
-  array
-  .filter(todo => todo.textContent.toLowerCase().includes(todoContent))
-  .forEach(todo => {
-    todo.classList.remove('is-hidden')
-  })
+const showOrHideTodo = ({ todo, shouldBeVisible }) => {
+  shouldBeVisible 
+    ? todo.classList.remove('is-hidden') 
+    : todo.classList.add('is-hidden')
 }
 
 const handleTodoSearches = event => {
   const inputValue = event.target.value.trim().toLowerCase()
-  const todosArray = Array.from(todosContainer.children)
-
-  hideMismatchingTodos(todosArray, inputValue)
-  showMatchingTodos(todosArray, inputValue)
+  const todos = Array
+    .from(todosContainer.children)
+    .map(todo => ({
+        todo, 
+        shouldBeVisible: todo.textContent.toLowerCase().includes(inputValue)
+      }))
+  
+  todos.forEach(showOrHideTodo)
 }
 
 formAddTodo.addEventListener('submit', handleAddTodo)

@@ -3,10 +3,11 @@ const todosContainer = document.querySelector('#todos-container')
 const formSearchTodo = document.querySelector('.form-search input')
 
 const generateTodoHTML = todoContent => `
-<li data-todo-content="${todoContent}" class="message has-background-warning has-text-dark my-1 p-3 is-flex is-justify-content-space-between is-align-items-center">
-  <span>${todoContent}</span><i class="fas fa-trash-alt is-clickable delete-item" data-todo-content="${todoContent}"></i>
-</li>
-`
+  <li data-todo-content="${todoContent}" class="message has-background-warning has-text-dark my-1 p-3 is-flex is-justify-content-space-between is-align-items-center">
+    <span>${todoContent}</span>
+    <i class="fas fa-trash-alt is-clickable delete-item" data-todo-content="${todoContent}"></i>
+  </li>`
+
 
 const handleAddTodo = event => {
   event.preventDefault()

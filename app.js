@@ -37,9 +37,11 @@ const handleTodoDeletion = event => {
 }
 
 const showOrHideTodo = ({ todo, shouldBeVisible }) => {
-  shouldBeVisible 
-    ? todo.classList.remove('is-hidden') 
-    : todo.classList.add('is-hidden')
+  if (shouldBeVisible) {
+    todo.classList.remove('is-hidden')
+    return
+  }
+  todo.classList.add('is-hidden')
 }
 
 const handleTodoSearches = event => {
